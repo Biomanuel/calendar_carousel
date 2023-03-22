@@ -1,7 +1,7 @@
-name: calendar_carousel
+name: carousel_calendar
 description: A flutter widget that display calendar in a form of carousel slider.
 version: 0.0.1
-homepage:
+homepage: https://github.com/Biomanuel/calendar_carousel
 
 environment:
   sdk: '>=2.19.2 <3.0.0'

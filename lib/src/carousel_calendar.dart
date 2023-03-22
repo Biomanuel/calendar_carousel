@@ -1,5 +1,4 @@
 import 'package:carousel_slider/carousel_slider.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 final DateTime _currentDate = DateTime.now();
@@ -8,13 +7,13 @@ Map<String, String> month({required Months month, int? year}) {
   Map<String, String> map = {};
   var days = 31;
   switch (month) {
-    case Months.February:
+    case Months.february:
       days = 28;
       break;
-    case Months.April:
-    case Months.June:
-    case Months.September:
-    case Months.November:
+    case Months.april:
+    case Months.june:
+    case Months.september:
+    case Months.november:
       days = 30;
       break;
     default:
@@ -27,11 +26,10 @@ Map<String, String> month({required Months month, int? year}) {
     days = _currentDate.day;
   }
 
-  List.generate(days, (index) => index + 1).forEach((int day) {
-    map.addAll({
-      day.toString(): getDay(DateTime(year!, month.index + 1, day).weekday)
-    });
-  });
+  for (var day in List.generate(days, (index) => index + 1)) {
+    map.addAll(
+        {day.toString(): getDay(DateTime(year, month.index + 1, day).weekday)});
+  }
   return map;
 }
 
@@ -55,23 +53,34 @@ String getDay(int element) {
 }
 
 enum Months {
-  January,
-  February,
-  March,
-  April,
-  May,
-  June,
-  July,
-  August,
-  September,
-  October,
-  November,
-  December,
+  january,
+  february,
+  march,
+  april,
+  may,
+  june,
+  july,
+  august,
+  september,
+  october,
+  november,
+  december,
 }
 
 extension on Months {
   String string() {
     return toString().split('.').last;
+  }
+
+  String capitalized() {
+    List<String> separate = string().split(RegExp(r"(?=[A-Z])"));
+    String labelMerge = "";
+
+    for (var la in separate) {
+      labelMerge += "${la.capitalize()} ";
+    }
+
+    return labelMerge.trimRight();
   }
 }
 
@@ -177,7 +186,7 @@ class _CalendarCarouselState extends State<CalendarCarousel> {
                                 padding:
                                     const EdgeInsets.symmetric(vertical: 8.0),
                                 child: Text(
-                                  Months.values[index].string() +
+                                  Months.values[index].capitalized() +
                                       (selectedYear != null
                                           ? " $selectedYear"
                                           : (widget.showYearAlways
@@ -357,4 +366,9 @@ extension on WeekdayAbbreviation {
         return null;
     }
   }
+}
+
+extension StringCasingExtension on String {
+  String capitalize() =>
+      length > 0 ? '${this[0].toUpperCase()}${substring(1).toLowerCase()}' : '';
 }

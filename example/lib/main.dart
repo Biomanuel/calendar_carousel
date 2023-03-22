@@ -1,4 +1,4 @@
-import 'package:calendar_carousel/calendar_carousel.dart';
+import 'package:carousel_calendar/carousel_calendar.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -15,7 +15,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+      home: const MyHomePage(title: 'Calendar Carousel'),
     );
   }
 }
@@ -74,12 +74,18 @@ class _MyHomePageState extends State<MyHomePage> {
                     '${date != null ? "${date!.day}-${date!.month}-${date!.year}" : "No selection yet."}',
                     style: Theme.of(context).textTheme.headlineMedium,
                   ),
-                  const Text(
-                    'You have pushed the button this many times:',
+                  Visibility(
+                    visible: false,
+                    child: const Text(
+                      'You have pushed the button this many times:',
+                    ),
                   ),
-                  Text(
-                    '$_counter',
-                    style: Theme.of(context).textTheme.headlineMedium,
+                  Visibility(
+                    visible: false,
+                    child: Text(
+                      '$_counter',
+                      style: Theme.of(context).textTheme.headlineMedium,
+                    ),
                   ),
                 ],
               ),
@@ -87,10 +93,13 @@ class _MyHomePageState extends State<MyHomePage> {
           ],
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
+      floatingActionButton: Visibility(
+        visible: false,
+        child: FloatingActionButton(
+          onPressed: _incrementCounter,
+          tooltip: 'Increment',
+          child: const Icon(Icons.add),
+        ),
       ),
     );
   }
