@@ -4,7 +4,7 @@ A custom widget that display calendar in a form of carousel slider.
 
 ## Installation
 
-Add `carousel_calendar: ^0.0.1` to your `pubspec.yaml` dependencies. And import it:
+Add `carousel_calendar: ^0.0.2` to your `pubspec.yaml` dependencies. And import it:
 
 ```dart
 import 'package:carousel_calendar/carousel_calendar.dart';
