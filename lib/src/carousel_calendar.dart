@@ -97,6 +97,7 @@ class CalendarCarousel extends StatefulWidget {
   final double? dayCarouselHeight;
   final DateTime? firstDate, lastDate;
   final bool showYearAlways;
+  final DateTime? value;
 
   const CalendarCarousel({
     Key? key,
@@ -112,6 +113,7 @@ class CalendarCarousel extends StatefulWidget {
     this.firstDate,
     this.lastDate,
     this.showYearAlways = false,
+    this.value,
   }) : super(key: key);
 
   @override
@@ -133,8 +135,8 @@ class _CalendarCarouselState extends State<CalendarCarousel> {
 
     if (mounted) {
       setState(() {
-        selectedDay = _currentDate.day;
-        selectedMonth = _currentDate.month;
+        selectedDay = widget.value?.day ?? _currentDate.day;
+        selectedMonth = widget.value?.month ?? _currentDate.month;
       });
     }
   }
